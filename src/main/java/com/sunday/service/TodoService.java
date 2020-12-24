@@ -25,6 +25,13 @@ public class TodoService {
 		return data;
 	}
 
+	@Transactional(readOnly = true)
+	public List<Todo> allTodoByDate(LocalDate date) {
+		var data = new ArrayList<Todo>();
+		repo.findByDate(date).forEach(data::add);
+		return data;
+	}
+
 	@Transactional
 	public Todo insert(Todo todo) {
 		return repo.save(todo);

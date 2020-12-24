@@ -35,6 +35,12 @@ public class TodoController {
 		        .ok(service.allTodo());
 	}
 
+	@GetMapping("/all/{date}")
+	public ResponseEntity<List<Todo>> getAllTodoByDate(@PathVariable("date") LocalDate date) {
+		return ResponseEntity
+		        .ok(service.allTodoByDate(date));
+	}
+
 	@PostMapping("/save")
 	public ResponseEntity<Todo> save(@RequestBody Todo todo) {
 		return ResponseEntity.ok(service.insert(todo));
